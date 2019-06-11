@@ -2,6 +2,11 @@ class UserSkill < ApplicationRecord
   belongs_to :user
   belongs_to :skill
 
+  def pex!
+    self.amount += 5
+    self.save
+  end
+
   def level
     if self.amount < 100
       1

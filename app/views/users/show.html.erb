@@ -1,8 +1,11 @@
 <h1 class="text-center">Profil</h1>
 <%= link_to "Voir le détail des compétences", skills_path, class: "text-center" %>
 <br>
+<%= link_to "Planifier une activité", new_user_activity_path, class: "text-center" %>
 <br>
-<h2><%= @user.email %></h2>
+<p><%= @user.email %></p>
+
+<h1>Mes compétences</h1>
 <div class="cards">
   <% @user_skills.each do |user_skill| %>
     <div class="card-product">
@@ -10,6 +13,24 @@
         <h2><%= user_skill.skill.name %></h2>
         <h3><%= user_skill.amount %> points</h3>
         <p><%= user_skill.level %></p>
+      </div>
+    </div>
+  <% end %>
+</div>
+
+<h1>Planning</h1>
+<div class="cards">
+  <% @user_activities.each do |user_activity| %>
+    <div class="card-product">
+      <div class="card-product-infos">
+        <h2><%= user_activity.activity.name %></h2>
+        <p>Début : <%= user_activity.begin_time.strftime("%d/%m/%Y à %H:%M") %></p>
+        <p>Fin : <%= user_activity.end_time.strftime("%d/%m/%Y à %H:%M") %></p>
+
+        <h3><%= user_activity.status %></h3>
+        <% if user_activity.status == "in progress" %>
+          <%= link_to "Je l'ai fait !", accomplish_user_activity_path(user_activity), class: "btn btn-success", method: :put %>
+        <% end %>
       </div>
     </div>
   <% end %>

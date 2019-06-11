@@ -1,0 +1,6 @@
+<%= simple_form_for @user_activity do |f| %>
+  <%= f.association :activity %>
+  <%= f.input :begin_time %>
+  <%= f.input :end_time %>
+  <%= f.button :submit %>
+<% end %>

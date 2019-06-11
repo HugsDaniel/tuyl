@@ -5,4 +5,9 @@ Rails.application.routes.draw do
   resources :activities, only: [:index]
   resources :skills, only: [:index]
   resources :users, only: [:show]
+  resources :user_activities, only: [:new, :create] do
+    member do
+      put :accomplish
+    end
+  end
 end

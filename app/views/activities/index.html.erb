@@ -1,0 +1,21 @@
+<h1 class="text-center">Activités</h1>
+<%= link_to "Voir le détail des compétences", skills_path, class: "text-center" %>
+<br>
+<br>
+<div class="cards">
+  <% @activities.each do |activity| %>
+    <div class="card-product">
+      <img src="https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/skateboard.jpg">
+      <div class="card-product-infos">
+        <h2><%= activity.name %></h2>
+        <h3><%= activity.description %></h3>
+        <p>
+          <% activity.skills.each do |skill| %>
+            <%= skill.name %>
+          <% end %>
+        </p>
+      </div>
+    </div>
+  <% end %>
+</div>
+

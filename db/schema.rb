@@ -42,17 +42,6 @@ ActiveRecord::Schema.define(version: 2019_06_12_105332) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "tuyls", force: :cascade do |t|
-    t.bigint "user_id"
-    t.bigint "activity_id"
-    t.datetime "beginning_time"
-    t.datetime "end_time"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["activity_id"], name: "index_tuyls_on_activity_id"
-    t.index ["user_id"], name: "index_tuyls_on_user_id"
-  end
-
   create_table "user_activities", force: :cascade do |t|
     t.bigint "user_id"
     t.bigint "activity_id"
@@ -92,8 +81,6 @@ ActiveRecord::Schema.define(version: 2019_06_12_105332) do
 
   add_foreign_key "activity_skills", "activities"
   add_foreign_key "activity_skills", "skills"
-  add_foreign_key "tuyls", "activities"
-  add_foreign_key "tuyls", "users"
   add_foreign_key "user_activities", "activities"
   add_foreign_key "user_activities", "users"
   add_foreign_key "user_skills", "skills"

@@ -11,4 +11,13 @@ class User < ApplicationRecord
 
   has_many :user_activities
   has_many :activities, through: :user_activities
+
+  after_create :create_user_skills
+
+  def create_user_skills
+    Skill.all.each do |skill|
+      user_skill = self.user_skills.build(skill: skill, amount: 0)
+      user_skill.save
+    end
+  end
 end

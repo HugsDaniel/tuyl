@@ -1,0 +1,16 @@
+<% if user_activity.status == "in progress" %>
+  <%= simple_form_for user_activity, url: accomplish_user_activity_path(user_activity) do |f| %>
+    <%= f.input :satisfaction_level,
+      collection: [
+        [0, "Naze, c'est pas pour moi..."],
+        [1, "Mouais, peut mieux faire"],
+        [2, "Pas mal, j'aime assez"],
+        [3, "Ok là on commence à causer, je suis content !"],
+        [4, "Waouh c'est moi qu'a fait ça ?"]
+      ],
+      label_method: :second,
+      value_method: :first
+    %>
+    <%= f.button :submit, "Je l'ai fait !", class: "btn btn-primary" %>
+  <% end %>
+<% end %>

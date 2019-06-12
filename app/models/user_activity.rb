@@ -2,11 +2,12 @@ class UserActivity < ApplicationRecord
   belongs_to :user
   belongs_to :activity
 
-  def calculate_points!
-    skills = self.activity.skills
+  def accomplish(params)
+    self.assign_attributes(params)
+    self.status = "accomplished"
 
-    skills.each do |skill|
-      self.user.user_skills.find_by(skill: skill).pex!
+    if self.save
+      ExpCalculatorService.new(self).call
     end
   end
 end

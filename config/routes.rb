@@ -7,12 +7,12 @@ Rails.application.routes.draw do
   resources :users, only: [:show]
   resources :user_activities, only: [:new, :create] do
     member do
-      put :accomplish
+      patch :accomplish
     end
   end
   resources :user_skills, only: [:index] do
     collection do
-      put :update_multiple
+      patch :update_multiple
     end
   end
 end

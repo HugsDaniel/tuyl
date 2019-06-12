@@ -21,16 +21,14 @@
 <h1>Planning</h1>
 <div class="cards">
   <% @user_activities.each do |user_activity| %>
-    <div class="card-product">
+    <div class="card-product card-activity">
       <div class="card-product-infos">
         <h2><%= user_activity.activity.name %></h2>
         <p>Début : <%= user_activity.begin_time.strftime("%d/%m/%Y à %H:%M") %></p>
         <p>Fin : <%= user_activity.end_time.strftime("%d/%m/%Y à %H:%M") %></p>
-
         <h3><%= user_activity.status %></h3>
-        <% if user_activity.status == "in progress" %>
-          <%= link_to "Je l'ai fait !", accomplish_user_activity_path(user_activity), class: "btn btn-success", method: :put %>
-        <% end %>
+
+        <%= render 'user_activities/form', user_activity: user_activity %>
       </div>
     </div>
   <% end %>

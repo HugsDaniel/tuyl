@@ -17,17 +17,24 @@ class UserActivitiesController < ApplicationController
 
   def accomplish
     @user_activity = UserActivity.find(params[:id])
-    @user_activity.status = "accomplished"
-    @user_activity.save
 
-    @user_activity.calculate_points!
+    results = @user_activity.accomplish(user_activity_params)
 
     redirect_to user_path(current_user)
+    flash[:notice] = display_results(results)
   end
 
   private
 
   def user_activity_params
-    params.require(:user_activity).permit(:activity_id, :begin_time, :end_time)
+    params.require(:user_activity).permit(:activity_id, :begin_time, :end_time, :satisfaction_level)
+  end
+
+  def display_results(results)
+    string = "Vous avez gagné "
+    results.each do |result|
+      string += "#{result[:points]} points de #{result[:skill]} "
+    end
+    string
   end
 end

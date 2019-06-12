@@ -5,7 +5,7 @@
 <br>
 <br>
 
-<%= form_tag update_multiple_user_skills_path, method: :put do %>
+<%= form_tag update_multiple_user_skills_path, method: :patch do %>
   <% @user_skills.each do |user_skill| %>
     <div class="form-group row">
       <%= fields_for "user_skill[]", user_skill do |f| %>
